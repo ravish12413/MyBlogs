@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts - Ravish Kumar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background: #f5f5dc;
+            color: #4a4a4a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #1b263b;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-navbar h1 {
+            font-size: 1.5rem;
+            color: #d4af37;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Side Navbar */
+        .side-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background: #1b263b;
+            padding-top: 70px;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+            z-index: 999;
+        }
+
+        .side-navbar ul {
+            list-style: none;
+        }
+
+        .side-navbar ul li {
+            padding: 15px 20px;
+        }
+
+        .side-navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .side-navbar ul li a:hover {
+            color: #d4af37;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 80px 20px 20px;
+            min-height: 100vh;
+        }
+
+        .posts-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .posts-section h2 {
+            font-size: 2.5rem;
+            color: #333333;
+            margin-bottom: 1rem;
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-section input,
+        .filter-section select {
+            padding: 10px;
+            background: #f5f5dc;
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            color: #333333;
+            font-size: 1rem;
+            width: 200px;
+        }
+
+        .filter-section input::placeholder {
+            color: #4a4a4a;
+        }
+
+        .post {
+            background: #1b263b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #d4af37;
+            display: none;
+        }
+
+        .post.visible {
+            display: block;
+        }
+
+        .post h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .post p {
+            color: #ccc;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1b263b;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #d4af37;
+        }
+
+        .footer p {
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #d4af37;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .side-navbar {
+                transform: translateX(-100%);
+            }
+
+            .side-navbar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .posts-section h2 {
+                font-size: 2rem;
+            }
+
+            .filter-section input,
+            .filter-section select {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .post h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-navbar h1 {
+                font-size: 1.2rem;
+            }
+
+            .posts-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .post h3 {
+                font-size: 1.1rem;
+            }
+
+            .post-meta,
+            .post p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <h1>Ravish Kumar's Blog</h1>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Side Navbar -->
+    <nav class="side-navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/newpost">Add Post</a></li>
+            <li><a href="/posts">Posts</a></li>
+            <li><a href="/about">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="posts-section">
+            <h2>All Posts</h2>
+            <div class="filter-section">
+                <input type="text" id="searchInput" placeholder="Search by domain...">
+                <select id="domainFilter">
+                        <option value="">All Domains</option>
+                        <option value="Tech">Tech</option>
+                        <option value="Political">Lifestyle</option>
+                        <option value="Education">Education</option>
+                        <option value="Defence">Defence & Security</option>
+                        <option value="History">History</option>
+                        <option value="College">College</option>
+                        <option value="unknown">Unknown</option>
+                </select>
+            </div>
+            <div class="post" data-domain="Tech">
+                <h3>AI in Healthcare</h3>
+                <div class="post-meta">Domain: Tech | Posted on: 2025-06-05</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="post" data-domain="Lifestyle">
+                <h3>Healthy Living Tips</h3>
+                <div class="post-meta">Domain: Lifestyle | Posted on: 2025-06-04</div>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="post" data-domain="Education">
+                <h3>Modern Education Trends</h3>
+                <div class="post-meta">Domain: Education | Posted on: 2025-06-03</div>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Ravish Kumar. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="tel:+917004218711"><i class="fas fa-phone"></i></a>
+            <a href="mailto:ravishss085@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/ravish" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Ravish" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Sidebar toggle for mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sideNavbar = document.querySelector('.side-navbar');
+
+        menuToggle.addEventListener('click', () => {
+            sideNavbar.classList.toggle('active');
+        });
+ async function loadPosts(domain = '') {
+    try {
+      const res = await fetch(`/posts-data${domain ? `?domain=${domain}` : ''}`);
+      const posts = await res.json();
+
+      const container = document.getElementById('postsContainer');
+      container.innerHTML = '';
+
+      if (!posts.length) {
+        container.innerHTML = '<p>No posts found.</p>';
+        return;
+      }
+
+      posts.forEach(post => {
+        const date = new Date(post.createdAt);
+        const formattedDate = date.toISOString().split('T')[0];
+
+        const postDiv = document.createElement('div');
+        postDiv.className = 'post';
+        postDiv.setAttribute('data-domain', post.domain);
+
+        postDiv.innerHTML = `
+          <h3>${post.title}</h3>
+          <div class="post-meta">Domain: ${post.domain} | Posted on: ${formattedDate}</div>
+          <p>${post.content.length > 200 ? post.content.slice(0, 200) + '...' : post.content}</p>
+        `;
+
+        container.appendChild(postDiv);
+      });
+    } catch (err) {
+      console.error('Failed to fetch posts:', err);
+      document.getElementById('postsContainer').innerHTML = '<p style="color:red;">Failed to load posts.</p>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const domainFilter = document.getElementById('domainFilter');
+    const searchInput = document.getElementById('searchInput');
+
+    function handleFilter() {
+      const searchVal = searchInput.value.trim().toLowerCase();
+      const domain = domainFilter.value;
+
+      // Fetch from backend by domain only
+      loadPosts(domain);
+    }
+
+    domainFilter.addEventListener('change', handleFilter);
+    searchInput.addEventListener('input', handleFilter);
+
+    // Load all on first load
+    loadPosts();
+  });
+    </script>
+</body>
+</html>

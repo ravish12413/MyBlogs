@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post - Ravish Kumar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background: #f5f5dc;
+            color: #4a4a4a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #1b263b;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-navbar h1 {
+            font-size: 1.5rem;
+            color: #d4af37;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Side Navbar */
+        .side-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background: #1b263b;
+            padding-top: 70px;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+            z-index: 999;
+        }
+
+        .side-navbar ul {
+            list-style: none;
+        }
+
+        .side-navbar ul li {
+            padding: 15px 20px;
+        }
+
+        .side-navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .side-navbar ul li a:hover {
+            color: #d4af37;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 80px 20px 20px;
+            min-height: 100vh;
+        }
+
+        .add-post-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #1b263b;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #d4af37;
+        }
+
+        .add-post-form h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+
+        .form-group select,
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: #f5f5dc;
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            color: #333333;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 150px;
+        }
+
+        .submit-btn {
+            background: #d4af37;
+            color: #333333;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .submit-btn:hover {
+            background: #c19b30;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1b263b;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #d4af37;
+        }
+
+        .footer p {
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #d4af37;
+        }
+        .success-message {
+            color: #d4af37;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .side-navbar {
+                transform: translateX(-100%);
+            }
+
+            .side-navbar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .add-post-form h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-navbar h1 {
+                font-size: 1.2rem;
+            }
+
+            .add-post-form h2 {
+                font-size: 1.8rem;
+            }
+
+            .form-group label,
+            .form-group select,
+            .form-group input,
+            .form-group textarea {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <h1>Ravish Kumar's Blog</h1>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Side Navbar -->
+    <nav class="side-navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/newpost">Add Post</a></li>
+            <li><a href="/posts">Posts</a></li>
+            <li><a href="/about">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="add-post-form">
+            <h2>Add a New Post</h2>
+            <form id="addPostForm" method="POST" action="/add">
+                <div class="form-group">
+                    <label for="domain">Domain/Theme</label>
+                    <select id="domain" name="domain" required>
+                        <option value="" disabled selected>Select a domain</option>
+                        <option value="Tech">Tech</option>
+                        <option value="Political">Lifestyle</option>
+                        <option value="Education">Education</option>
+                        <option value="Defence">Defence & Security</option>
+                        <option value="History">History</option>
+                        <option value="College">College</option>
+                        <option value="unknown">Unknown</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="body">Body</label>
+                    <textarea id="body" name="content" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Publish Post</button>
+                <div id="suc-msg" style="display: none;" class="success-message"></div>
+                <div id="err-msg" style="display: none;" class="error-message"></div>
+            </form>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Ravish Kumar. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="tel:+917004218711"><i class="fas fa-phone"></i></a>
+            <a href="mailto:ravishss085@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/ravish" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/ravish12413" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Sidebar toggle for mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sideNavbar = document.querySelector('.side-navbar');
+
+        menuToggle.addEventListener('click', () => {
+            sideNavbar.classList.toggle('active');
+        });
+
+        document.getElementById('addPostForm').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Prevent normal form submission
+
+    const form = e.target;
+    const successMessage = document.getElementById('suc-msg');
+    const errorMessage = document.getElementById('err-msg');
+
+    // Clear messages
+    successMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        successMessage.textContent = result.message;
+        successMessage.style.display = 'block';
+        form.reset(); // Optionally reset form
+      } else {
+        errorMessage.textContent = result.message || 'Something went wrong.';
+        errorMessage.style.display = 'block';
+      }
+    } catch (err) {
+      console.error('Fetch error:', err);
+      errorMessage.textContent = 'Network error or server is unreachable.';
+      errorMessage.style.display = 'block';
+    }
+  });
+    </script>
+</body>
+</html>

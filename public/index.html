@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Ravish Kumar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background: #f5f5dc;
+            color: #4a4a4a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #1b263b;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-navbar h1 {
+            font-size: 1.5rem;
+            color: #d4af37;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Side Navbar */
+        .side-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background: #1b263b;
+            padding-top: 70px;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+            z-index: 999;
+        }
+
+        .side-navbar ul {
+            list-style: none;
+        }
+
+        .side-navbar ul li {
+            padding: 15px 20px;
+        }
+
+        .side-navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .side-navbar ul li a:hover {
+            color: #d4af37;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 80px 20px 20px;
+            min-height: 100vh;
+        }
+
+        .recent-posts {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .recent-posts h2 {
+            font-size: 2.5rem;
+            color: #333333;
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        .post {
+            background: #1b263b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #d4af37;
+        }
+
+        .post h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .post p {
+            color: #ccc;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1b263b;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #d4af37;
+        }
+
+        .footer p {
+            color: #ccc;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #d4af37;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .side-navbar {
+                transform: translateX(-100%);
+            }
+
+            .side-navbar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .recent-posts h2 {
+                font-size: 2rem;
+            }
+
+            .post h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-navbar h1 {
+                font-size: 1.2rem;
+            }
+
+            .recent-posts h2 {
+                font-size: 1.8rem;
+            }
+
+            .post h3 {
+                font-size: 1.1rem;
+            }
+
+            .post-meta,
+            .post p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <h1>Ravish Kumar's Blog</h1>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Side Navbar -->
+    <nav class="side-navbar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/newpost">Add Post</a></li>
+            <li><a href="/posts">Posts</a></li>
+            <li><a href="/about">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="recent-posts">
+            
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Ravish Kumar. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="tel:+917004218711"><i class="fas fa-phone"></i></a>
+            <a href="mailto:ravishss085@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/ravish" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Ravish" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Sidebar toggle for mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const sideNavbar = document.querySelector('.side-navbar');
+
+        menuToggle.addEventListener('click', () => {
+            sideNavbar.classList.toggle('active');
+        });
+
+        async function loadRecentPosts() {
+    const section = document.querySelector('.recent-posts');
+    if (!section) return;
+
+    try {
+      const res = await fetch('/latest-posts');
+      const posts = await res.json();
+
+      if (!Array.isArray(posts) || posts.length === 0) {
+        section.innerHTML = '<p>No recent posts available.</p>';
+        return;
+      }
+
+      let html = '<h2>Recent Posts</h2>';
+
+      posts.forEach(post => {
+        const date = new Date(post.createdAt);
+        const formattedDate = date.toISOString().split('T')[0];
+
+        html += `
+          <div class="post">
+            <h3>${post.title}</h3>
+            <div class="post-meta">Domain: ${post.domain} | Posted on: ${formattedDate}</div>
+            <p>${post.content.length > 200 ? post.content.substring(0, 200) + '...' : post.content}</p>
+          </div>
+        `;
+      });
+
+      section.innerHTML = html;
+    } catch (err) {
+      console.error('Failed to load posts:', err);
+      section.innerHTML = '<p style="color:red;">Failed to load recent posts.</p>';
+    }
+  }
+
+  // Load posts when the DOM is ready
+  window.addEventListener('DOMContentLoaded', loadRecentPosts);
+    </script>
+</body>
+</html>
