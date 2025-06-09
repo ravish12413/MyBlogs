@@ -8,11 +8,13 @@ const app= express();
 dotenv.config();
 
 const indexroutes = require('./routes/index');
+const pathfile = path.join(__dirname, 'public');
 
-const pathfile = path.join(__dirname, '../public');
 app.use(express.static(pathfile));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, 'public/static')));
 
 app.use('/',indexroutes);
 
