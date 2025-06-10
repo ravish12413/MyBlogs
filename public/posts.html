@@ -259,29 +259,18 @@
                 <select id="domainFilter">
                         <option value="">All Domains</option>
                         <option value="Tech">Tech</option>
-                        <option value="Political">Lifestyle</option>
+                        <option value="Political">Political</option>
                         <option value="Education">Education</option>
                         <option value="Defence">Defence & Security</option>
                         <option value="History">History</option>
                         <option value="College">College</option>
-                        <option value="unknown">Unknown</option>
+                        <option value="unknown">unknown</option>
                 </select>
             </div>
-            <div class="post" data-domain="Tech">
-                <h3>AI in Healthcare</h3>
-                <div class="post-meta">Domain: Tech | Posted on: 2025-06-05</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div id="postsContainer">
+
             </div>
-            <div class="post" data-domain="Lifestyle">
-                <h3>Healthy Living Tips</h3>
-                <div class="post-meta">Domain: Lifestyle | Posted on: 2025-06-04</div>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div>
-            <div class="post" data-domain="Education">
-                <h3>Modern Education Trends</h3>
-                <div class="post-meta">Domain: Education | Posted on: 2025-06-03</div>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            </div>
+
         </section>
     </div>
 
@@ -304,6 +293,7 @@
         menuToggle.addEventListener('click', () => {
             sideNavbar.classList.toggle('active');
         });
+
  async function loadPosts(domain = '') {
     try {
       const res = await fetch(`/posts-data${domain ? `?domain=${domain}` : ''}`);
@@ -322,7 +312,7 @@
         const formattedDate = date.toISOString().split('T')[0];
 
         const postDiv = document.createElement('div');
-        postDiv.className = 'post';
+        postDiv.className = 'post visible';
         postDiv.setAttribute('data-domain', post.domain);
 
         postDiv.innerHTML = `

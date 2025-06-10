@@ -47,14 +47,14 @@ const getLatestPosts = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch recent posts' });
   }
 };
-
 const getFilteredPosts = async (req, res) => {
   try {
     const { domain } = req.query;
+    console.log('Filtering posts for domain:', domain);
 
     let query = db.collection('posts').orderBy('createdAt', 'desc');
 
-    if (domain) {
+    if (domain && domain !== '' && domain !== 'All') {
       query = query.where('domain', '==', domain);
     }
 
@@ -73,10 +73,9 @@ const getFilteredPosts = async (req, res) => {
 
     res.status(200).json(posts);
   } catch (err) {
-    console.error('Error fetching posts:', err);
-    res.status(500).json({ error: 'Failed to fetch posts' });
+    console.error('🔥 Error fetching posts:', err.message);
+    res.status(500).json({ error: 'Failed to fetch posts', details: err.message });
   }
 };
-
 
 module.exports = { addPost, getLatestPosts , getFilteredPosts };

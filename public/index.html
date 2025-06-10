@@ -100,6 +100,21 @@
             border-bottom: 2px solid #d4af37;
             padding-bottom: 10px;
         }
+            .spinner {
+            margin: 30px auto;
+            width: 40px;
+            height: 40px;
+            border: 5px solid #d4af37;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+            }
+
 
         .post {
             background: #1b263b;
@@ -219,7 +234,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <section class="recent-posts">
-            
+            <div class="spinner" id="loadingIndicator"></div>
         </section>
     </div>
 

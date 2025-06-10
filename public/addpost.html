@@ -256,7 +256,7 @@
                     <select id="domain" name="domain" required>
                         <option value="" disabled selected>Select a domain</option>
                         <option value="Tech">Tech</option>
-                        <option value="Political">Lifestyle</option>
+                        <option value="Political">Political</option>
                         <option value="Education">Education</option>
                         <option value="Defence">Defence & Security</option>
                         <option value="History">History</option>
@@ -327,7 +327,7 @@
       if (response.ok && result.success) {
         successMessage.textContent = result.message;
         successMessage.style.display = 'block';
-        form.reset(); // Optionally reset form
+        form.reset(); 
       } else {
         errorMessage.textContent = result.message || 'Something went wrong.';
         errorMessage.style.display = 'block';
