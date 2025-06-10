@@ -4,14 +4,11 @@
     { "source": "/newpost", "destination": "/addpost.html" },
     { "source": "/posts", "destination": "/posts.html" },
     { "source": "/about", "destination": "/contact.html" },
-    { "source": "/nully", "destination": "/nully.html" }
+    { "source": "/nully", "destination": "/nully.html" },
+    { "source": "/(.*)", "destination": "/nully.html" }
   ],
   "redirects": [],
   "headers": [],
   "cleanUrls": true,
-  "trailingSlash": false,
-  "fallback": {
-    "source": "/(.*)",
-    "destination": "/nully.html"
-  }
+  "trailingSlash": false
 }
